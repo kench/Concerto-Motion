@@ -1,0 +1,8 @@
+{
+	"name": "Concerto Motion",
+	"version": "1",
+	"description": "Concerto Motion support extension for Google Chrome.",
+	"permissions": [
+		"<all_urls>"
+	]
+}
