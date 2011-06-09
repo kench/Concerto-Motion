@@ -1,8 +1,20 @@
 {
 	"name": "Concerto Motion",
 	"version": "1",
+	
 	"description": "Concerto Motion support extension for Google Chrome.",
+	"icons": {
+		"16": "icon_16.png",
+		"128": "icon_128.png"
+	},
+	
+	"app": {
+		"launch": {
+			"local_path": "signage.html"
+		}
+	},
+	
 	"permissions": [
-		"<all_urls>"
+		"http://*/"
 	]
 }

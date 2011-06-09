@@ -1,0 +1,38 @@
+body {
+	margin: 0;
+	overflow: hidden;
+}
+
+body.uninitialized {
+	background-color: #006695;
+}
+
+body.initialization {
+	color: white;
+}
+
+body.size-1920x1200 {
+	background: url(backgrounds/concertoblue_1920x1200.jpg) no-repeat;
+}
+
+body.size-1280x1024 {
+	background: url(backgrounds/concertoblue_1280x1024.jpg) no-repeat;
+}
+
+.size-1920x1200 #container {
+	width: 1920px;
+	height: 1200px;
+}
+
+#status_message {
+	font-family: Helvetica, sans-serif;
+	width: 500;
+	margin-right: auto;
+	margin-left: auto;
+	font-size: 20px;
+	text-align: center;
+}
+
+.size-1280x1024 #status_message {
+	margin-top: 780;
+}
