@@ -33,10 +33,44 @@ function openConnection()
 	});	
 }
 
+function isResolution(width, height)
+{
+	// Resolution tolerance of 5%
+	var tolerance = .005;
+	var height_t = height * tolerance;
+	var width_t = width * tolerance;
+	var lb_height = height - height_t;
+	var ub_height = height + height_t;
+	var lb_width = width - width_t;
+	var ub_width = width + width_t;
+	if ((screen.width < ub_width) && (screen.width > lb_width) && (screen.height > lb_height) && (screen.height < ub_height))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 $(function() {
 	// Detect screen dimensions/size.
-	if (true)
+	
+	if (isResolution(1920, 1200))
 	{
+		$("body").addClass("size-1920x1200");
+	}
+	else if (isResolution(1680, 1050))
+	{
+		$("body").addClass("size-1680x1050");
+	}
+	else if (isResolution(1400, 1050))
+	{
+		$("body").addClass("size-1400x1050");
+	}
+	else
+	{
+		// Assume baseline resolution of 1280x1024.
 		$("body").addClass("size-1280x1024");
 	}
 	
