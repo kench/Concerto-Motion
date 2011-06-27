@@ -24,7 +24,7 @@
  */
 (function($) {
     $.extend({
-        signage: function(screenId){
+        signage: function(screenId, configuration){
             //the current template checksum, if this changes then the template and fields have changed
             var checksum;
             //the fields in the template, they will be defined later on...I hope
@@ -53,12 +53,12 @@
             function checkScreen(force){
                 //ajax json request to get information about this screen
                 $.ajax({type: "POST",
-                        url: content_server_endpoint + "content.php",
+                        url: configuration.server_endpoint + "content.php",
                         data: {"id": screenId},
                         success: function(json){
                             //if the json does not exist or the checksum does not check up then reload the template
                             if(json != null && (force || json["checksum"] != checksum)){
-                                var imgSrc = content_server_endpoint + "template.php?id=" + screenId + "&time=" + (new Date()).getTime();
+                                var imgSrc = configuration.server_endpoint + "template.php?id=" + screenId + "&time=" + (new Date()).getTime();
                                 //load the image to cache
                                 var img = new Image();
                                 //set onload event handler
@@ -107,7 +107,7 @@
                 if(field && field["timeout"] < time)
                     //ajax json request to get each field's content
                     $.ajax({type: "POST",
-                            url: content_server_endpoint + "content.php",
+                            url: configuration.server_endpoint + "content.php",
                             data: {"screen_id": screenId, "field_id": field["id"]},
                             success: function(json){
                                 //if not mime_type is set or duration then just wait
@@ -132,7 +132,7 @@
             					                start();
                                             });
                                     } else if(json["mime_type"].match(/image/)){
-                                        var imgSrc = content_server_endpoint + "image.php?file=" + escape(json["content"]) + "&width=" + field["width"] + "&height=" + field["height"];
+                                        var imgSrc = configuration.server_endpoint + "image.php?file=" + escape(json["content"]) + "&width=" + field["width"] + "&height=" + field["height"];
                                         //load the image to cache
                                         var img = new Image();
                                         //set onload event handler
