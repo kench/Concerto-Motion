@@ -1,5 +1,48 @@
 #overlay {
 	width: 100%;
 	height: 100%;
-	background-color: gray;
+	background-color: lightgray;
+	text-align: center;
+	padding-top: 20%;
+	padding-bottom: ;
+}
+
+.slide {
+	background-color: #EEEEEE;
+	display: inline-block;
+	padding: 10px;
+	margin-left: 2%;
+	box-shadow: 5px 5px 5px #888;
+	width: 15%;
+	height: 15%;
+	border: 1px solid #AAAAAA;
+	transition: all 1s ease-in-out;
+}
+
+.slide-hidden {
+	width: 0;
+	display: none;
+}
+
+.slide-filler {
+	visibility: hidden;
+}
+
+.slide-img {
+	width: 100%;
+	height: 100%;
+}
+
+.slide-focused {
+	border: 2px solid #666666;
+}
+
+.fullscreen {
+	position: static;
+	margin: 0;
+	box-shadow: none;
+	width: 100%;
+	height: auto;
+	padding: 0;
+	border: none;
 }
