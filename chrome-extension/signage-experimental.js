@@ -50,24 +50,30 @@
                     if (!paused) {
                         pause( );
                     }
-                    //console.log("Going to previous content");
+                    console.log("Going to previous content");
                     previous_content( );
                 } else if (e.which == 68 || e.which == 100) {
                     if (!paused) {
-                        //console.log("Pausing");
+                        console.log("Pausing");
                         pause( );
                     } else {
-                        //console.log("Resuming");
+                        console.log("Resuming");
                         run( );
                     }
                 } else if (e.which == 71 || e.which == 103) {
                     if (!paused) {
                         pause( );
                     }
-                    //console.log("Going to next content");
+                    console.log("Going to next content");
                     next_content( );
                 }
                     
+            }
+            
+            // Debug here to find out what event information DepthJS passes to a handler.
+            function depthjs_handler(e)
+            {
+            	
             }
 
             // One-time initialization goes in here...

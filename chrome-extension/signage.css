@@ -7,7 +7,7 @@ body.uninitialized {
 	background-color: #006695;
 }
 
-body.initialization {
+#status_message {
 	color: white;
 }
 
