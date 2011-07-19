@@ -1,0 +1,47 @@
+<html>
+<head>
+	<title>Concerto Configuration</title>
+	<script src="jquery.js" type="text/javascript"></script>
+<style type="text/css">
+html { background-color: lightgrey; font-family: sans-serif; }
+#container { margin: 10% 25%; }
+#settings { margin-top: 50px; }
+#settings * {
+	display: block;
+	margin: 10px;
+}
+#settings input { width: 100%; font-size: 25px; }
+</style>
+</head>
+<body>
+<script type="text/javascript">
+$(function() {
+	// Prepopulate fields if available
+	if (!(localStorage["mac"] == undefined))
+	{
+		$('#mac').val(localStorage["mac"]);
+	}
+	if (!(localStorage["serverEndpoint"] == undefined))
+	{
+		$('#endpoint').val(localStorage["serverEndpoint"]);
+	}
+	$("#settings").submit(function()
+	{
+		localStorage["mac"] = $('#mac').val();
+		localStorage["serverEndpoint"] = $('#endpoint').val();
+		localStorage["haveConfiguration"] = "true";
+	});
+});
+</script>
+	<div id="container">
+	<img src="concerto.png" width="500px" />
+		<form method="post" id="settings" action="signage.html">
+			<label for="mac">MAC Address</label>
+			<input type="text" name="mac" id="mac" placeholder="DEADBEEF" />
+			<label for="endpoint">Server URL</label>
+			<input type="text" name="endpoint" id="endpoint" placeholder="http://concerto.rpi.edu/screen/" />
+			<input type="submit" name="save" id="save" value="Save and Reload" />
+		</form>
+	</div>
+</body>
+</html>

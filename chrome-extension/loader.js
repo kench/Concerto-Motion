@@ -3,18 +3,19 @@ function configHook(e)
 	console.log("Key pressed.");
 	if (e.which == 67)
 	{
-		window.location = "settings.html";
+		window.location = "settings.html"; // Manual configuration page.
 	}
 	else if (e.which == 65)
 	{
-		/* Change localStorage["serverEndpoint"] to the URL of your Concerto installation.
+		/* Automatic configuration.
+    		 * Change localStorage["serverEndpoint"] to the URL of your Concerto installation.
 		 *
 		 */
 		localStorage["mac"] = "2421522B50";
 		localStorage["serverEndpoint"] = "http://concerto.rpi.edu/screen/";
-		localStorage["haveConfiguration"] = true;
+		localStorage["haveConfiguration"] = "true";
 		$("#status_message").html("Automatic configuration complete.  Reloading.");
-		setTimeout("Concerto.initialize();", 2000);
+		setTimeout("location.reload(true);", 2000);
 	}
 }
 
@@ -83,10 +84,10 @@ var Concerto = {
 	{
 		if (status_code != "success")
 		{
-			retry_count++;
+			this.retry_count++;
 			var error_message = "Unable to connect to content server.";
 			$("#status_message").html(error_message);
-			setTimeout("openConnection()", retry_count * 1000);
+			setTimeout("Concerto.initialize()", this.retry_count * 1000);
 		}
 		else if (verification_request.responseText.length > 1000)
 		{
@@ -162,7 +163,7 @@ var Concerto = {
 		
 		// Configuration section here.
 		// Chrome supports localStorage, so we'll fetch configuration settings from there.
-		if (!localStorage["haveConfiguration"])
+		if (localStorage["haveConfiguration"] != "true")
 		{
 			// Redirect to configuration page.
 			console.log("Not configured. Waiting to launch configuration wizard.");
