@@ -1,6 +1,6 @@
 function configHook(e)
 {
-	console.log("Key pressed.");
+	//console.log("Key pressed.");
 	if (e.which == 67)
 	{
 		window.location = "settings.html"; // Manual configuration page.
@@ -11,7 +11,11 @@ function configHook(e)
     		 * Change localStorage["serverEndpoint"] to the URL of your Concerto installation.
 		 *
 		 */
-		localStorage["mac"] = "2421522B50";
+		//localStorage["mac"] = "2421522B50";
+		if (window.location.hash != '')
+		{
+			localStorage["mac"] = window.location.hash.substring(1);
+		}
 		localStorage["serverEndpoint"] = "http://concerto.rpi.edu/screen/";
 		localStorage["haveConfiguration"] = "true";
 		$("#status_message").html("Automatic configuration complete.  Reloading.");
@@ -161,6 +165,9 @@ var Concerto = {
 		    text: 'Initializing...'
 		}).appendTo('#container');
 		
+		// Hook keystrokes.
+		$(document).keyup(configHook);
+		
 		// Configuration section here.
 		// Chrome supports localStorage, so we'll fetch configuration settings from there.
 		if (localStorage["haveConfiguration"] != "true")
@@ -168,7 +175,6 @@ var Concerto = {
 			// Redirect to configuration page.
 			console.log("Not configured. Waiting to launch configuration wizard.");
 			setInterval("configMessageLoop();", 5000);
-			$(document).keyup(configHook);
 			return;
 		}
 
