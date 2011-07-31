@@ -83,38 +83,17 @@
                 // hook some key presses
                 $(document).keyup(keyup_handler);
                 // Hook Kinect events
-                DepthJS = {
-                      onKinectInit: function() {
-                        //
-                      },
-                      onRegister: function(x, y, z, data) {
-                        pause( );
-                      },
-                      onUnregister: function() {
-                        run( );
-                      },
-                      onMove: function(x, y, z) {
-                        //
-                      },
-                      onSwipeLeft: function() {
-                        next_content( );
-                      },
-                      onSwipeRight: function() {
-                        previous_content( );
-                      },
-                      onSwipeDown: function() {
-                        //
-                      },
-                      onSwipeUp: function() {
-                        //
-                      },
-                      onPush: function() {
-                        //
-                      },
-                      onPull: function() {
-                        //
-                      }
-                };
+                
+                if (DepthJS)
+                {
+                	console.log("DepthJS plugin detected.  Registering event handlers.");
+                	DepthJS = {
+                	      onRegister: pause,
+                	      onUnregister: run,
+                	      onSwipeLeft: next_content,
+                	      onSwipeRight: previous_content
+                	};
+                }
                 // make sure we clean up old stale divs
                 garbage_collect( );
             }
