@@ -44,7 +44,39 @@
       },
       show : function( ) {
         $('#overlay').fadeIn('fast', function() {
-                // Animation complete
+                // Animation complete.  Register event handlers.
+                DepthJS = {
+                      onRegister: function(x, y, z, data) {
+                        $().motion("show");
+                      },
+                      onUnregister: function() {
+                        $().motion("hide");
+                      },
+                      onSwipeLeft: function() {
+                        $().motion("next");
+                      },
+                      onSwipeRight: function() {
+                        $().motion("previous");
+                      }
+                };
+                $("body").keypress(function(e)
+                {
+                	if (e.charCode == 110)
+                	{
+                		// Proceed to next item.
+                		$().motion("next");
+                	}
+                	else if (e.charCode == 112)
+                	{
+                		// Proceed to previous item.
+                		$().motion("previous");
+                	}
+                	else if (e.charCode == 101)
+                	{
+                		// Hide overlay.
+                		$().motion("hide");
+                	}
+                });
         });
       },
       hide : function( ) {
@@ -108,53 +140,5 @@ $(function()
 			// Show overlay.
 			$().motion("show");
 		}
-		else if (e.charCode == 110)
-		{
-			// Proceed to next item.
-			$().motion("next");
-		}
-		else if (e.charCode == 112)
-		{
-			// Proceed to previous item.
-			$().motion("previous");
-		}
-		else if (e.charCode == 101)
-		{
-			// Hide overlay.
-			$().motion("hide");
-		}
 	});
-
-	DepthJS = {
-	      onKinectInit: function() {
-	        //
-	      },
-	      onRegister: function(x, y, z, data) {
-	        $().motion("show");
-	      },
-	      onUnregister: function() {
-	        $().motion("hide");
-	      },
-	      onMove: function(x, y, z) {
-	        //
-	      },
-	      onSwipeLeft: function() {
-	        $().motion("next");
-	      },
-	      onSwipeRight: function() {
-	        $().motion("previous");
-	      },
-	      onSwipeDown: function() {
-	        //
-	      },
-	      onSwipeUp: function() {
-	        //
-	      },
-	      onPush: function() {
-	        //
-	      },
-	      onPull: function() {
-	        //
-	      }
-	};
 });
